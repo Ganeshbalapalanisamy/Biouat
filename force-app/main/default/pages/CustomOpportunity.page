@@ -1,0 +1,16 @@
+<apex:page showHeader="false" sidebar="false" standardController="BiomatiQ_Lead__c" recordSetVar="opp" >
+<script>    
+    <apex:includeLightning />    
+    <div id="LightningComponentid" />
+	$Lightning.use("c:oppapp",function(){																																			
+            $Lightning.createComponent("c:newOpportunity",
+            { 
+            },
+            "LightningComponentid", // the Id of div tag where your component will be rendered
+            function(cmp) {
+                console.log('Component is created-----------------');
+                console.log('Calling the LWC Component-----------------'); //console.log('Calling the LWC Component' + {!$CurrentPage.parameters.id});
+            });
+        });
+    </script>
+</apex:page>

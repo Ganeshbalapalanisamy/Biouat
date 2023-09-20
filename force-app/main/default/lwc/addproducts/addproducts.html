@@ -1,0 +1,327 @@
+<template>
+ 
+    <!--template if:true={show}>
+        <section  class="slds-modal slds-fade-in-open">
+         <div class="slds-modal__container" style="height: 500px;width:800px;">
+                 <header class="slds-modal__header" style="width:800px;">
+                     <h2 class="slds-text-heading_medium slds-hyphenate">Product Detail</h2>
+                  </header>
+
+                  <div class="slds-m-bottom_small" style="width:800px;" >
+                    <div style="background-color:white;color:blue;">Brand</div>
+          <lightning-input type="text"
+             value={searchValue}
+             placeholder='Search Brand Name Here...'
+             onchange={searchKeyword}
+             ></lightning-input>
+       </div> 
+        <template if:true={data}>
+           <div class="slds-modal__content slds-p-around_medium" style="height: 600px;width:800px;padding-top:0px;">
+             <div style="height: 500px;width:800px;padding-top:0px;">
+               <lightning-datatable
+                      key-field="ids"
+                      data={data}
+                      columns={col}
+                       show-row-number-column
+                     onrowselection={handleRowActions}
+                     >
+                </lightning-datatable>
+             </div>
+           </div>
+          </template>
+       
+         
+             <footer class="slds-modal__footer" style="width:800px;">
+                <lightning-button variant="Neutral" label="Close" title="Close"  onclick={closeModalAction}></lightning-button>
+               <lightning-button variant="brand" label="Next" title="Save Products" onclick={handleClick} class="slds-m-left_x-small"></lightning-button>
+            </footer> 
+        </div>
+      </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+     </template-->
+    
+       
+      <template if:true={ValSelected}>
+        <section  class="slds-modal slds-fade-in-open">
+           
+         <div class="slds-modal__container" >
+           <header class="slds-modal__header" style="width:800px;color:rgb(0,0,128);background-color:azure;">
+                     <h2 class="slds-text-heading_medium slds-hyphenate">Product List</h2>
+                     <p>Price Book : {priceBook}</p>
+           </header>
+          <div class="slds-m-bottom_small container "  style="height: 500px;width:800px;">
+              <template if:true={selected}>
+                  <lightning-datatable
+                      key-field="Id"
+                      data={selected}
+                      columns={column}
+                      onsave={saveHandleAction}
+                      onrowaction={handleRowActionProList}
+                      oncancel={cancelChanges}
+                      draft-values={fldsItemValues}
+                      hide-checkbox-column 
+                      show-row-number-column>
+                  </lightning-datatable>
+              </template>
+
+              <footer class="slds-modal__footer">
+                <lightning-button variant="Neutral" label="Back" title="Back"  onclick={backHandler}></lightning-button>
+              </footer> 
+            </div>
+     </div>
+      </section>
+     <div class="slds-backdrop slds-backdrop_open"></div>  
+     </template>
+  <!---Brand Form-->
+
+<template if:false={productShow}>
+  <template  if:true={show}>
+    
+
+    <section role="dialog" tabindex="-1"  aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open slds-scrollable">
+  
+      <div class="slds-modal__container " style="height:500px;text-align:center;margin-left: 350px;" >
+          <header class="slds-modal__header" style="background-color:azure; width: 800px;" > 
+              <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" onclick={closeModalAction}>
+                <svg focusable="false" data-key="close" aria-hidden="true" viewBox="0 0 52 52" class="slds-button__icon slds-button__icon_large slds-button_icon-inverse">
+                    <g><path d="M31 25.4l13-13.1c.6-.6.6-1.5 0-2.1l-2-2.1c-.6-.6-1.5-.6-2.1 0L26.8 21.2c-.4.4-1 .4-1.4 0L12.3 8c-.6-.6-1.5-.6-2.1 0l-2.1 2.1c-.6.6-.6 1.5 0 2.1l13.1 13.1c.4.4.4 1 0 1.4L8 39.9c-.6.6-.6 1.5 0 2.1l2.1 2.1c.6.6 1.5.6 2.1 0L25.3 31c.4-.4 1-.4 1.4 0l13.1 13.1c.6.6 1.5.6 2.1 0L44 42c.6-.6.6-1.5 0-2.1L31 26.8c-.4-.4-.4-1 0-1.4z"></path></g>
+                </svg>
+               <span class="slds-assistive-text">Cancel and close</span>
+            </button>
+               <h2 id="modal-heading-02" class="slds-text-heading_medium slds-hyphenate" style="color:rgb(0,0,128)">Brands</h2>
+            </header>
+  
+      <div class="slds-modal__content slds-p-around_medium slds-scrollable" id="modal-content-id-2" style="width: 800px;" >
+       <div class=" slds-theme--default external-events" >
+          
+              
+              <div style="color:blue;"><b>Brand Name</b></div>    
+              <lightning-input type="search"  placeholder='Search Brand Name Here...' onchange={searchKeywordBrand} class="slds-m-bottom_small"  maxlength="70">  
+              </lightning-input>  
+          
+          <table >
+              <thead>
+                      
+                   <tr class="slds-line-height_reset" >
+                      <th class="" scope="col">
+                          <div class="slds-truncate">
+                              <lightning-input onchange={allSelected} type="checkbox"></lightning-input>
+                          </div>
+                       </th>
+                     
+                
+                 
+  
+                      <th class="" scope="col">
+                         
+                              Brand Name
+                         
+                      </th>
+                  
+                      <th class="" scope="col">
+                        
+                          Sub Categories 
+                          
+                      </th>
+                     
+                  </tr>
+               </thead>
+              <tbody>
+                  <template iterator:it={branddata}>
+                      <tr class="slds-hint-parent" key = {it.value.Id} >
+                           <td scope="col">
+                              <div>
+                                  <lightning-input type="checkbox" value={it.value.Id} data-id={it.value.Name} onclick={handleRowActions} checked={handlecheckval}></lightning-input>
+                              </div>
+                          </td>
+                          
+                        
+                          <td data-label="Brand Name" >
+                              <div >{it.value.Brand_Name__c}</div>
+                          </td>
+                           
+                          <td data-label="Purchase Price" >
+                              <div >{it.value.Name}</div>
+                          </td>
+                    </tr>
+                  </template>
+              </tbody>
+          </table>
+               <footer class="slds-modal__footer slds-align_absolute-center" style="width:820px;color:rgb(0,0,128);background-color:azure;">
+                  <lightning-button variant="Neutral" label="Close" title="Close"  onclick={closeModalAction}></lightning-button>
+                  <lightning-button variant="brand" label="Save" title="Save Brands" onclick={handleSaveBrand} class="slds-m-left_x-small"></lightning-button>
+               
+              </footer>  
+      </div></div>
+           </div></section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+  </template>
+</template>
+<!---Product Form-->
+<template if:true={productShow}>
+
+    <template if:true={choosePriceBook}>
+        <section role="dialog" tabindex="-1"  style="background-color: rgb(233, 238, 237);"  aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open slds-scrollable">
+  
+            <div class="slds-modal__container " >
+                <header class="slds-modal__header"  style="background-color: rgb(224, 238, 215);"> 
+                    <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" style="background-color:brown" onclick={closeModalAction}>
+                      <svg focusable="false" data-key="close" aria-hidden="true" viewBox="0 0 52 52" class="slds-button__icon slds-button__icon_large slds-button_icon-inverse">
+                          <g><path d="M31 25.4l13-13.1c.6-.6.6-1.5 0-2.1l-2-2.1c-.6-.6-1.5-.6-2.1 0L26.8 21.2c-.4.4-1 .4-1.4 0L12.3 8c-.6-.6-1.5-.6-2.1 0l-2.1 2.1c-.6.6-.6 1.5 0 2.1l13.1 13.1c.4.4.4 1 0 1.4L8 39.9c-.6.6-.6 1.5 0 2.1l2.1 2.1c.6.6 1.5.6 2.1 0L25.3 31c.4-.4 1-.4 1.4 0l13.1 13.1c.6.6 1.5.6 2.1 0L44 42c.6-.6.6-1.5 0-2.1L31 26.8c-.4-.4-.4-1 0-1.4z"></path></g>
+                      </svg>
+                     <span class="slds-assistive-text">Cancel and close</span>
+                  </button>
+                     <h2 id="modal-heading-05" class="slds-text-heading_medium slds-hyphenate" >Choose Price Book</h2>
+                  </header>
+        <lightning-card   >
+            <p >
+                Select a Price Book to associate with this opportunity. 
+                You can add products only from the Price Book you associate with this opportunity. 
+                Changing the Price Book deletes all products from the opportunity.
+            </p>
+    <lightning-combobox name="pricebook" value={pricebook} options={priceBookOptions}  onchange={handlePriceBookChange} label="Price Book"></lightning-combobox>
+    <footer class="slds-modal__footer slds-align_absolute-center" style="background-color: rgb(224, 238, 215);">
+    
+    <lightning-button label="Cancel" onclick={closeModalAction}></lightning-button>
+    <lightning-button label="Save" variant="brand" name="save" onclick={handleSavePriceBook}></lightning-button>
+    </footer>
+        </lightning-card>
+        </div></section>
+        </template>
+
+
+
+  <template  if:true={show}>
+    
+
+  <section role="dialog" tabindex="-1"  aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open slds-scrollable">
+
+    <div class="slds-modal__container " style="height:500px;text-align:center;margin-left: 350px;" >
+        <header class="slds-modal__header" style="background-color:azure; width: 800px;" > 
+            <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" onclick={closeModalAction}>
+              <svg focusable="false" data-key="close" aria-hidden="true" viewBox="0 0 52 52" class="slds-button__icon slds-button__icon_large slds-button_icon-inverse">
+                  <g><path d="M31 25.4l13-13.1c.6-.6.6-1.5 0-2.1l-2-2.1c-.6-.6-1.5-.6-2.1 0L26.8 21.2c-.4.4-1 .4-1.4 0L12.3 8c-.6-.6-1.5-.6-2.1 0l-2.1 2.1c-.6.6-.6 1.5 0 2.1l13.1 13.1c.4.4.4 1 0 1.4L8 39.9c-.6.6-.6 1.5 0 2.1l2.1 2.1c.6.6 1.5.6 2.1 0L25.3 31c.4-.4 1-.4 1.4 0l13.1 13.1c.6.6 1.5.6 2.1 0L44 42c.6-.6.6-1.5 0-2.1L31 26.8c-.4-.4-.4-1 0-1.4z"></path></g>
+              </svg>
+             <span class="slds-assistive-text">Cancel and close</span>
+          </button>
+             <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate" style="color:rgb(0,0,128)">Products</h2>
+             <p>Price Book : {priceBook}</p>
+            </header>
+
+    <div class="slds-modal__content slds-p-around_medium slds-scrollable" id="modal-content-id-1" style="width: 800px;" >
+     <div class=" slds-theme--default external-events" >
+        
+            
+            <div style="color:blue;"><b>Brand Name Or Product Name </b></div>    
+            <lightning-input type="search"  placeholder='Search Brand Name Or Product Name Here...' onchange={searchKeyword} class="slds-m-bottom_small"  maxlength="70">  
+            </lightning-input>  
+        
+        <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_striped">
+            <thead>
+                    
+                 <tr class="slds-line-height_reset" >
+                    <th class="" scope="col">
+                        <div class="slds-truncate">
+                            <lightning-input onchange={allSelected} type="checkbox"></lightning-input>
+                        </div>
+                     </th>
+                   
+                    <th class="" scope="col">
+                       <div >
+                           <a class="slds-th__action slds-text-link_reset" href="javascript:void(0);" role="button" tabindex="0" name="Name">
+                             Product Name
+                           </a>
+                       </div>
+                    </th>
+                     <!--th class="" scope="col">
+                        <div class="slds-th__action slds-text-link_reset" href="javascript:void(0);" role="button" tabindex="0" name="checkBox">
+                            <lightning-input onchange={handleShowHide} type="checkbox"></lightning-input>
+                        </div>
+                     </th-->
+                    <th class="" scope="col">
+                        <a class="slds-th__action slds-text-link_reset" href="javascript:void(0);" role="button" tabindex="0"  name="Model">
+                            Model
+                        </a>
+                    </th>
+                    <th class="" scope="col">
+                        <a class="slds-th__action slds-text-link_reset" href="javascript:void(0);" role="button" tabindex="0"  name="Catelogue No">
+                            Catelogue No
+                        </a>
+                    </th>
+
+                    <th class="" scope="col">
+                        <a class="slds-th__action slds-text-link_reset" href="javascript:void(0);" role="button" tabindex="0"  name="Brand Name">
+                            Brand Name
+                        </a>
+                    </th>
+                     <th class="" scope="col">
+                        <a class="slds-th__action slds-text-link_reset" href="javascript:void(0);" role="button" tabindex="0"  name="Selling Price">
+                          Selling Price 
+                        </a>
+                    </th>
+                     <th class="" scope="col">
+                        <a class="slds-th__action slds-text-link_reset" href="javascript:void(0);" role="button" tabindex="0"  name="Accessories">
+                          Accessories
+                        </a>
+                    </th>
+                    <th class="" scope="col">
+                        <a class="slds-th__action slds-text-link_reset" href="javascript:void(0);" role="button" tabindex="0"  name="Description">
+                        Description 
+                        </a>
+                    </th>
+                   
+                </tr>
+             </thead>
+            <tbody>
+                <template iterator:it={data}>
+                    <tr class="slds-hint-parent" key = {it.value.Id}>
+                         <td scope="col">
+                            <div>
+                                <lightning-input type="checkbox" value={it.value.Id} data-id={it.value.Name} onclick={handleRowActions} checked={handlecheckval}></lightning-input>
+                            </div>
+                        </td>
+                        
+                            <td data-label="Name">
+                              <div  >
+                                   <a class="slds-th__action slds-text-link_reset" href="javascript:void(0);" role="button" tabindex="0" onclick={selectedRec} name={it.value.Id}>
+                                      <div class="slds-cell-wrap">{it.value.Name}</div>
+                                   </a>
+                              </div>
+                            </td>
+                        <!--td data-label="emptyCheckBox">
+                            <div class="slds-cell-wrap"></div>
+                        </td-->
+                        <td data-label="Model">
+                            <div class="slds-cell-wrap">{it.value.Model__c}</div>
+                        </td>
+                        <td data-label="Catelogue No">
+                            <div class="slds-cell-wrap">{it.value.Cat_No__c}</div>
+                        </td>
+                        <td data-label="Brand Name">
+                            <div class="slds-cell-wrap">{it.value.Brand_Picklist__c}</div>
+                        </td>
+                         <td data-label="Selling Price">
+                            <div class="slds-cell-wrap">{it.value.Selling_Price__c}</div>
+                        </td>
+                         <td data-label="Selling Price">
+                            <div class="slds-cell-wrap">{it.value.LineItem__c}</div>
+                        </td>
+                        <td data-label="Purchase Price">
+                            <div class="slds-cell-wrap">{it.value.Description__c}</div>
+                        </td>
+                  </tr>
+                </template>
+            </tbody>
+        </table>
+             <footer class="slds-modal__footer slds-align_absolute-center" style="width:820px;color:rgb(0,0,128);background-color:azure;">
+                <lightning-button variant="Neutral" label="Close" title="Close"  onclick={closeModalAction}></lightning-button>
+               <lightning-button variant="brand" label="Next" title="Save Products" onclick={handleClick} class="slds-m-left_x-small"></lightning-button>
+            </footer>  
+    </div></div>
+         </div></section>
+          <div class="slds-backdrop slds-backdrop_open"></div>
+</template>
+</template>
+
+
+    </template>

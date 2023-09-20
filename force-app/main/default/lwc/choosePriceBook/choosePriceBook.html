@@ -1,0 +1,30 @@
+<template>
+    <div >
+    <section role="dialog" tabindex="-1" style="background-color: rgb(233, 238, 237);"  aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open slds-scrollable">
+  
+        <div class="slds-modal__container " style="background-color: rgb(233, 238, 237);">
+            <header class="slds-modal__header"  style="background-color: rgb(224, 238, 215);"> 
+                <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" style="background-color: brown;" onclick={handleCancel}>
+                  <svg focusable="false" data-key="close" aria-hidden="true" viewBox="0 0 52 52" class="slds-button__icon slds-button__icon_large slds-button_icon-inverse">
+                      <g><path d="M31 25.4l13-13.1c.6-.6.6-1.5 0-2.1l-2-2.1c-.6-.6-1.5-.6-2.1 0L26.8 21.2c-.4.4-1 .4-1.4 0L12.3 8c-.6-.6-1.5-.6-2.1 0l-2.1 2.1c-.6.6-.6 1.5 0 2.1l13.1 13.1c.4.4.4 1 0 1.4L8 39.9c-.6.6-.6 1.5 0 2.1l2.1 2.1c.6.6 1.5.6 2.1 0L25.3 31c.4-.4 1-.4 1.4 0l13.1 13.1c.6.6 1.5.6 2.1 0L44 42c.6-.6.6-1.5 0-2.1L31 26.8c-.4-.4-.4-1 0-1.4z"></path></g>
+                  </svg>
+                 <span class="slds-assistive-text">Cancel and close</span>
+              </button>
+                 <h2 id="modal-heading-02" class="slds-text-heading_medium slds-hyphenate" >Choose Price Book</h2>
+              </header>
+    <div >
+        <p>
+            Select a Price Book to associate with this opportunity. 
+            You can add products only from the Price Book you associate with this opportunity. 
+            Changing the Price Book deletes all products from the opportunity.
+        </p>
+<lightning-combobox name="pricebook" value={pricebook} options={priceBookOptions}  onchange={handlePriceBookChange} label="Price Book"></lightning-combobox>
+<footer class="slds-modal__footer slds-align_absolute-center" style="background-color: rgb(224, 238, 215);">
+
+<lightning-button label="Cancel" onclick={handleCancel}></lightning-button>
+<lightning-button label="Save" variant="brand" name="save" onclick={handleSave}></lightning-button>
+</footer>
+    </div>
+    </div>
+</section></div>
+</template>

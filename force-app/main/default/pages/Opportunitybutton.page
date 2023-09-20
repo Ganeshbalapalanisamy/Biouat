@@ -1,0 +1,16 @@
+<apex:page showHeader="false" standardController="BiomatiQ_Lead__c" sidebar="false" recordSetVar="Opp">
+    <apex:includeLightning />    
+    <apex:includeScript value="/lightning/lightning.out.js" />
+    <div id="LightningComponentid" />    
+    <script>
+    $Lightning.use("c:oppapp", function() {
+        $Lightning.createComponent("c:newOpportunity",
+          { 
+          },
+          "LightningComponentid",
+          function(cmp) {
+            cmp.set("v.recordId",'{!$CurrentPage.parameters.id}');
+          });
+    });
+    </script>
+</apex:page>

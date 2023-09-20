@@ -1,0 +1,83 @@
+<!--
+* @File Name          : checkoutForm.html
+* @Description        : Creation Of New Opportunity,Existing Opportunity,Repeat order,Non-sales,Post-sales and Feed-Back component
+* @Author             : Karthick Ravi
+* @Parent Component   : checkOutForm.html
+* @Child  Component   : newOpportunity.html
+* @Child  Component   : customlookupopportunity.html
+* @Child  Component   : searchopportunity.html
+* @Child  Component   : postsalesupdate.html
+* @Last Modified By   : gowtham.k@rudhrainfosolutions.com
+* @Last Modified On   : 13/06/2023
+* @Modification Log   : 
+*==============================================================================
+* Ver         Date                     Author            Modification
+*==============================================================================
+* 1.0    6/10/2022                Karthick Ravi          Initial Version
+-->
+<template>  
+    <template if:false={hidemodel}>
+        <section  class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                    <header class="slds-modal__header" style="color:rgb(0,0,128);background-color:azure;">
+                        <h2 class="slds-text-heading_medium slds-hyphenate">Check Out Form</h2>
+                     </header>
+
+                     
+                      <div class="slds-modal__content slds-p-around_medium">
+                     
+                      <lightning-input class="slds-p-left_xx-large" type="checkbox" data-id="checkbox" label="New Opportunity" onchange={handleNewOpportunity} ></lightning-input>
+                      <lightning-input class="slds-p-left_xx-large" type="checkbox" data-id="checkbox" label="Existing Opportunites" onchange={handleExistingOpportunitys} ></lightning-input>
+                      <template if:true={existingopportunity}>
+                        
+
+                        <c-custom-lookup-opportunity obj-name="BiomatiQ_Lead__c" placeholder="Search Opportunity" icon-name="standard:opportunity"  get-value-id={getCompanyId} visit-id={getIdFromParent}></c-custom-lookup-opportunity> 
+                      </template>
+                      <lightning-input class="slds-p-left_xx-large" type="checkbox" data-id="checkbox" label="Repeat Order" onchange={handleRepeatOrder}></lightning-input>
+                      <template if:true={existingorder}>
+                        <c-searchopportunity hidemodel2={openmodal2} getcheckout={getCompanyId} ></c-searchopportunity>
+                      </template>
+                  
+                       
+                   
+
+                      <lightning-input class="slds-p-left_xx-large" type="checkbox" data-id="checkbox" label="Non-Sales" onchange={handleNonSales}></lightning-input>
+                      <template if:true={showfeedback}>   
+                        <!-- <lightning-record-form object-api-name="Visit_Management__c" record-id={recordId} mode="Edit" columns="1" fields={fields}  > 
+                        </lightning-record-form>
+                      -->
+                        <lightning-input name="name" value={nonsales} label="Non-Sales" onchange={handleChanges}
+                         ></lightning-input>
+                         <lightning-button label="Update" onclick={handleClick}></lightning-button>
+                         <lightning-button label="cancel" onclick={handlenonsalescancel}></lightning-button>
+                      </template>
+
+
+
+
+                      <lightning-input class="slds-p-left_xx-large" type="checkbox" checked={postsales}  data-id="checkbox and FeedBack" label="Post-Sales And Feed-Back" onchange={handlepostSales}></lightning-input>
+                      <template if:true={postsales}>
+                        <c-postsalesupdate hidemodel2={openmodal2} get-id={getIdFromParent}  onpostsalecanceled={handlePostSaleCanceld}></c-postsalesupdate>
+                      </template>
+
+<div style="margin-left: 49px;margin-right:200px;">
+                       <lightning-input name="mom" value={mom} label="MOM" required="true" onchange={handleMOMChanges}
+                         ></lightning-input>
+                        </div>
+            </div>
+                   
+                   
+                    <div class="slds-modal__footer">
+                    <button class="slds-button slds-button_neutral" aria-label="Cancel and close" onclick={handleCancel}>Cancel</button>
+                    <lightning-button label="Save" variant="brand" type="submit" onclick={progress} ></lightning-button>
+                    </div>
+             
+       </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+        <template if:true={createOpportunity}>
+            <c-new-opportunity hidemodel={showmodel} selected-account={getCompanyId} source-visit={getIdFromParent}></c-new-opportunity>
+        </template>
+       
+</template>
+</template>

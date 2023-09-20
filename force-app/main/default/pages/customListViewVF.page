@@ -1,0 +1,38 @@
+<!--apex:page standardController="BiomatiQ_Lead__c" recordSetVar="opportunities" tabStyle="Opportunity" extensions="customListViewController"-->
+   <apex:page >
+    <apex:includeLightning />
+
+    <div id="lightning" />
+
+    <script>
+        $Lightning.use("c:AddProductOnOderApp", function() {
+          $Lightning.createComponent("customListViewAura",
+              { },
+              "lightning",
+              function(cmp) {
+                console.log("list view was created");
+                // do some stuff
+              }
+          );
+        });
+    </script>
+    
+    <!--apex:form >
+        <apex:pageBlock title="Edit Stage and Close Date" mode="edit">
+            <apex:pageMessages />
+            <apex:pageBlockButtons location="top">
+                <apex:commandButton value="Save" action="{!save}"/>
+                <apex:commandButton value="Cancel" action="{!cancel}"/>
+            </apex:pageBlockButtons>
+            <apex:pageBlockTable value="{!selected}" var="opp">
+                <apex:column value="{!opp.name}"/>
+                <apex:column headerValue="Stage">
+                    <apex:inputField value="{!opp.Lead_Status__c}"/>
+                </apex:column>
+                <apex:column headerValue="Close Date">
+                    <apex:inputField value="{!opp.Opportunity_Closing__c}"/>
+                </apex:column>
+            </apex:pageBlockTable>      
+        </apex:pageBlock>
+    </apex:form-->
+    </apex:page>

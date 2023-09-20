@@ -1,0 +1,28 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+	  <!--div class="demo-only" style="height: 100px;">
+          <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+             <div class="slds-modal__container">
+               <header class="slds-modal__header">
+                   <lightning:buttonIcon iconName="utility:close" class="slds-modal__close" size="small" variant="bare" alternativeText="Close" onclick="{! c.handleClose }"/>
+                     
+                         </header>
+                            <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                               <lightning:card -->
+                                  <c:newOpportunityGlobal />
+        
+                                   <!--/lightning:card>
+                              
+                             </div>
+                 
+                  
+    
+            
+        <div class="recordError">
+            <ui:message title="Error" severity="error" closable="true">
+                {!v.recordError}
+            </ui:message>
+        </div>
+              </div></section>
+    <div class="slds-backdrop slds-backdrop_open"></div>
+    </div-->
+</aura:component>

@@ -1,0 +1,10 @@
+table { 
+
+    width: 100%;
+    
+  }
+  td,th,thead{
+    width: 20px;height: 100px;
+    border: 1px solid;
+    text-align: center;
+  }

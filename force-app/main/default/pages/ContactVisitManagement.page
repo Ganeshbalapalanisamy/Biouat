@@ -1,0 +1,20 @@
+<apex:page showHeader="false" sidebar="false" standardController="Visit_Management__c" recordSetVar="vis">
+     <apex:includeLightning />    
+    <div id="LightningComponentid" />
+   
+<!-- the Id of div tag whihttps://trialheadcomdeveloper-dev-ed.my.salesforce.com/_ui/common/apex/debug/ApexCSIPage#ch will be used to render your LWC component  -->
+    <script>
+	$Lightning.use("c:ContactVisitManagementApp",function(){																																			
+            $Lightning.createComponent("c:ContactVisitmanagement",
+            { 
+                 recordId : '{!$CurrentPage.parameters.id}'          
+            },
+            "LightningComponentid", // the Id of div tag where your component will be rendered
+            function(cmp) {
+                console.log('Calling the LWC Component'); //console.log('Calling the LWC Component' + {!$CurrentPage.parameters.id});
+            });
+        });
+    
+  
+    </script>
+</apex:page>

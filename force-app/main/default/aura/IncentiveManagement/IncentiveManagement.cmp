@@ -1,0 +1,66 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickActionWithoutHeader" controller="IncentiveManagement" access="global" >
+	 <aura:attribute name="recordId" type="Id" />
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+  <aura:attribute name="Incentive" type="Incentive__c[]" />
+  
+    <aura:html tag="style">
+        .cuf-content {
+            padding: 0 0rem !important;
+        }
+        .slds-p-around--medium {
+            padding: 0rem !important;
+        }       
+        .slds-modal__content{
+            overflow-y:hidden !important;
+            height:unset !important;
+            max-height:unset !important;
+        }
+    </aura:html>
+    <div class="modal-header slds-modal__header slds-size_1-of-1">
+        <h4 class="title slds-text-heading--medium" >Incentive Created</h4>
+    </div>
+    <div>
+        
+     <aura:iteration items="{!v.Incentive}" var="a">
+
+                  <div class="c-container">
+                     
+                <div class="c-container1">
+        <lightning:layout verticalAlign="center" class="x-large">
+            <lightning:layoutItem flexibility="auto" padding="around-small">
+            <lightning:recordViewForm   recordId="{!a.Id}"   objectApiName="Incentive__c">
+                
+                <lightning:card variant="Narrow" title="{!a.Name}" >          
+                   <div class="slds-grid"> 
+              
+                    <div class="slds-col slds-size_2-of-3">
+                        <lightning:outputField  fieldName="Name" />
+                        <lightning:outputField fieldName="Program__c" />
+                        <lightning:outputField fieldName="Policy__c" />
+                    </div>
+                    <div class="slds-col slds-size_1-of-3">
+                        <lightning:outputField fieldName="Benefit__c" />
+                        <lightning:outputField fieldName="Order__c" />
+                </div >
+               
+                    </div>
+                    </lightning:card>
+                </lightning:recordViewForm></lightning:layoutItem></lightning:layout></div>
+          </div></aura:iteration>
+      
+    
+              
+    
+            
+
+</div>
+     <!-- MODAL FOOTER -->
+		<div class="modal-footer slds-modal__footer slds-size_1-of-1">
+            <div class="forceChangeRecordTypeFooter">
+ 
+                <ui:button class="slds-button slds-button--brand"
+                       label="Done" press="{!c.handleDone}"/>
+            </div>
+        </div>
+
+</aura:component>

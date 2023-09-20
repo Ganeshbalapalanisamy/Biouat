@@ -1,0 +1,39 @@
+<template>
+    <div class="slds-wrap slds-grid">
+        <div class="slds-col slds-size_6-of-12 slds-p-horizontal--small slds-m-bottom--medium"><p>
+<lightning-card  title="Day-in">
+    <lightning-icon icon-name="utility:success" alternative-text="Success!" variant="success"
+            title="success variant"></lightning-icon>
+    <lightning-button label="Day-in" onclick={handleClick}  ></lightning-button>
+</lightning-card>
+</p></div>
+<div class="slds-col slds-size_6-of-12 slds-p-horizontal--small slds-m-bottom--medium"><p>
+<lightning-card  title="Day-Out">
+    
+
+    <lightning-layout multiple-rows >
+
+    <lightning-layout-item size="3" flexibility="auto" padding="horizontal-small" class="slds-text-align_left">
+        <lightning-icon icon-name="utility:error" alternative-text="Error!" title="default style"></lightning-icon>
+        <lightning-button label="Day-out" onclick={checkouthandler}></lightning-button>
+    </lightning-layout-item>
+    <lightning-layout-item size="9" flexibility="auto" padding="horizontal-small" class="slds-text-align_right">
+      <template if:true={showButton}>
+       <lightning-button
+          class="slds-m-top_medium slds-p-around_medium slds-p-top_medium"
+          onclick={navigateToMap}
+          label="RouteMap"
+          icon-name="utility:new_window"
+          icon-position="right"
+         
+        ></lightning-button>
+      </template>
+    </lightning-layout-item>
+</lightning-layout>
+</lightning-card>
+</p></div>
+</div>
+<lightning-map map-markers={lstMarkers} zoom-level={zoomlevel} ></lightning-map>
+ 
+
+</template>

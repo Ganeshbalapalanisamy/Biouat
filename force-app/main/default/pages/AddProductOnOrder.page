@@ -1,0 +1,24 @@
+<apex:page showHeader="false" sidebar="false" standardController="Product_List__c" recordSetVar="ord">
+    <apex:includeLightning />    
+    <div id="LightningComponentid" />
+       <head>
+           <style >
+               @page {
+            width:500px;
+               heigh:600px;
+          }
+           </style></head>
+<!-- the Id of div tag whihttps://trialheadcomdeveloper-dev-ed.my.salesforce.com/_ui/common/apex/debug/ApexCSIPage#ch will be used to render your LWC component  -->
+    <script>
+    $Lightning.use("c:AddProductOnOrderApp",function(){                                                                                                                                         
+            $Lightning.createComponent("c:addproducts",
+            { 
+                recordId : '{!$CurrentPage.parameters.id}'
+            },
+            "LightningComponentid", // the Id of div tag where your component will be rendered
+            function(cmp) {
+                console.log('Calling the LWC Component'); //console.log('Calling the LWC Component' + {!$CurrentPage.parameters.id});
+            });
+        });
+    </script>
+</apex:page>

@@ -1,0 +1,6 @@
+<design:component  label="Group DataTable">
+	<design:attribute name="objectName" label="ObjectName"/>
+    <design:attribute name="fieldName" label="FieldName"/>
+    <design:attribute name="selectRecordId" label="SelectRecordId"/>
+    <design:attribute name="selectRecordName" label="SelectRecordName"/>
+</design:component>

@@ -1,0 +1,92 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global"   >
+        <aura:attribute name="editForm" type="BiomatiQ_Lead__c" access="public" />
+     <aura:attribute name="recordId" type="Id"/>
+
+    <aura:attribute name="enType" type="string" />  
+      <aura:attribute name="leadsource" type="string" />
+    <aura:attribute name="opttype" type="string" />
+    <aura:attribute name="ottsales" type="string" />
+     <aura:attribute name="filetype" type="List" default="['.png', '.jpg', '.jpeg']" />
+    <aura:attribute name="multiple" type="Boolean" default="true" />
+<article class="slds-card">
+    New  Biomatic lead
+    <lightning:recordEditForm  recordId="{!v.recordId}"  objectApiName="BiomatiQ_Lead__c"   aura:id="editForm"           
+                              onsubmit="{!c.handleOnSubmit}" 
+                              onsuccess="{!c.handleOnSuccess}" >
+
+        <div class="slds-size_2-of-3">	
+            
+             <lightning:inputField fieldName="Company__c"   required="true" aura:id="company"/>
+            <lightning:inputField fieldName="Name__c"   required="true" aura:id="name"/>
+            <lightning:inputField fieldName="Email__c"   required="true" aura:id="email"/>
+            <lightning:inputField fieldName="Phone__c"   required="true" aura:id="phone"/>
+            
+           <!-- <lightning:inputField fieldName="Name"   required="true" aura:id="name"/> -->
+            <!-- <lightning:inputField fieldName="Company_Name__c"   required="true" aura:id="company"/>-->
+            <lightning:inputField fieldName="Address__c"   required="true" aura:id="address"/>
+            <!-- <lightning:inputField fieldName="Zip_code_pin_code__c"    required="true" aura:id="zip"/>-->
+            <lightning:inputField fieldName="Mobile_Number__c" required="true" aura:id="phone"/>
+           
+           <!-- <lightning:inputField fieldName="Status"   required="true" aura:id="Status"/> -->
+            
+            <lightning:inputField fieldName="Entry_Type__c"  aura:id="entrytype"  required="true" value="{!v.enType}" />
+            
+            <aura:if isTrue="{!v.enType=='Opportunities'}">
+                <lightning:inputField fieldName="Opportunity_Product_Category__c" aura:id="opybrand" required="true" value="{!v.opttype}" />
+                <aura:if isTrue="{!v.opttype=='Specialty Products'}">
+                    <lightning:inputField fieldName="Speciality_Brands_Lead__c" required="true" aura:id="splbrand" />
+                </aura:if>
+                <aura:if isTrue="{!v.opttype=='Regular Essentials'}">                           
+                    <lightning:inputField fieldName="Regular_Brands_Lead__c" aura:id="regularbrad" />
+                </aura:if>
+                <aura:if isTrue="{!v.opttype=='Instruments'}"> 
+                    <lightning:inputField fieldName="Instrument_Brands_Lead__c"  required="true" aura:id="instrumentbrad" />
+                </aura:if>
+                
+                 <lightning:inputField fieldName="Lead_Source__c"   required="true" aura:id="leadsource" value="{!v.leadsource}" />
+             <aura:if isTrue="{!v.leadsource == 'Referral - through colleague'}"> 
+                 <lightning:inputField fieldName="Referral_Colleague_Name__c" aura:id="colleague" /> 
+                </aura:if>
+                 <aura:if isTrue="{!v.leadsource == 'Referral - through principal company'}">
+                     <lightning:inputField fieldName="Referral_Company_Name__c" aura:id="companyname" /> 
+                </aura:if>
+                
+                
+                <lightning:inputField fieldName="Product_Category_Model_Discussed__c" aura:id="product"  required="true"/>
+                <lightning:inputField fieldName="Actionables__c" aura:id="actions" />
+                <lightning:inputField fieldName="Opportunity_Time_to_Action__c" aura:id="opttime" required="true" />
+                
+                 <lightning:inputField fieldName="Urgent__c" aura:id="checkbox"  required="true"/>
+                <lightning:inputField fieldName="Opportunity_Specific_Remarks__c" aura:id="optremarks" required="true" />
+                 
+                <lightning:fileUpload label="Opportunity enquiry files" name="fileUploader"   multiple="true"   accept="{!v.filetype}"  recordId="{!v.recordId}"   onuploadfinished="{!c.handleUploadFinished}" />
+       
+       
+                <lightning:inputField fieldName="Lead_Entry_Type__c" aura:id="leadtype"  required="true"/>
+                <lightning:inputField fieldName="Opportunity_Next_Follow_up__c" aura:id="opendate" />
+                
+                <lightning:inputField fieldName="Opportunity_Closing__c"  required="true" aura:id="closedate" /> 
+               
+            </aura:if>
+            <aura:if isTrue="{!v.enType=='Non Sales'}"> 	
+                
+                <lightning:inputField fieldName="Describe_Non_Sale_Activity__c" required="true"  aura:id="describe" value="{!v.ottsales}"  /> 	
+                <aura:if isTrue="{!v.ottsales=='Other'}">
+                    
+                    <lightning:inputField fieldName="Others__c" required="true" aura:id="otherss"  />
+                </aura:if>
+                <lightning:inputField fieldName="Remarks__c"   required="true" aura:id="remarks" /> 
+            </aura:if>
+            
+            <!-- <lightning:button variant="Neutral" label="Back" title="Back" onclick="{!c.backClick}"/>-->
+            <!-- <lightning:button variant="brand" type="submit" name="submit" label="submit" />-->
+            
+            <center>
+                <lightning:button variant="brand" type="submit" name="submit" label="submit"   />
+            </center>
+            
+        </div>
+    </lightning:recordEditForm>
+    </article>
+
+</aura:component>

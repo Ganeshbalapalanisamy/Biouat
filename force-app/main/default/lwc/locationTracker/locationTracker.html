@@ -1,0 +1,43 @@
+<!--
+* @File Name          : locationTracker.html
+* @Description        : Using GeoLocation Updating check-in and Checkout Location Component.
+* @Author             : Karthick Ravi
+* @Apex Class         : locationTrackerController
+* @Apex Test Class    : locationTrackerControllerTest
+* @Parent Component   : locationTracker.html
+* @Child  Component   : checkOutForm.html
+* @Last Modified By   : gowtham.k@rudhrainfosolutions.com
+* @Last Modified On   : 13/6/2023
+* @Modification Log   : 
+*==============================================================================
+* Ver         Date                     Author            Modification
+*==============================================================================
+* 1.0    6/10/2022                Karthick Ravi          Initial Version
+-->
+
+
+<template>
+    <lightning-card title="Track Salesperson With check-in and check-out">
+        <div class="slds-p-around_small">
+        <lightning-button-group>
+        
+            <lightning-button 
+                    label="Check-in"
+                    onclick={handleClick}>
+                </lightning-button> <br/><br/>
+               
+
+                <lightning-button class="slds-float_right" 
+                    label="Checkout"
+                    onclick={showclick}
+                   >  
+                </lightning-button> <br/><br/>
+            </lightning-button-group>
+            <lightning-map map-markers={lstMarkers} zoom-level={zoomlevel} ></lightning-map> 
+        </div>
+    </lightning-card>
+    <template if:true={showSearchComponent}>
+    <c-checkout-form hidemodel={hidemodel}  get-id-from-parent={recordId} get-company-id={accName} mom={mom} oncallpasstoparent={checkoutclick}></c-checkout-form>
+</template>
+
+</template>

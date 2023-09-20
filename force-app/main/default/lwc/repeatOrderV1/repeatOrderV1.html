@@ -1,0 +1,279 @@
+<template>
+  <template if:true={isShowModal}>
+  <lightning-record-edit-form object-api-name="Biomatiq_Opportunity__c" onsuccess={handleSuccess} >
+ <!-- modal start -->      
+ 
+
+
+  <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open slds-modal_small" aria-labelledby="modal-heading-01" aria-modal="true">
+      <div class="slds-modal__container">
+          <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" onclick={handleCancel}>
+              <svg focusable="false" data-key="close" aria-hidden="true" viewBox="0 0 52 52" class="slds-button__icon slds-button__icon_large slds-button_icon-inverse">
+                <g><path d="M31 25.4l13-13.1c.6-.6.6-1.5 0-2.1l-2-2.1c-.6-.6-1.5-.6-2.1 0L26.8 21.2c-.4.4-1 .4-1.4 0L12.3 8c-.6-.6-1.5-.6-2.1 0l-2.1 2.1c-.6.6-.6 1.5 0 2.1l13.1 13.1c.4.4.4 1 0 1.4L8 39.9c-.6.6-.6 1.5 0 2.1l2.1 2.1c.6.6 1.5.6 2.1 0L25.3 31c.4-.4 1-.4 1.4 0l13.1 13.1c.6.6 1.5.6 2.1 0L44 42c.6-.6.6-1.5 0-2.1L31 26.8c-.4-.4-.4-1 0-1.4z"></path></g>
+              </svg>
+    
+              <span class="slds-assistive-text">Cancel and close</span>
+            </button>
+
+
+      <!-- modal header start -->
+
+      <div class="slds-modal__header" style="color:rgb(0,0,128);background-color:azure;">
+          <h1 id="modal-heading-01" class="slds-modal__title slds-hyphenate">Repeat Order</h1>
+        </div>
+  
+        <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+        
+          <div class="slds-section slds-is-open">
+              <h3 class="slds-section__title slds-theme_shade" style="color:rgb(0,0,128);background-color:rgb(243, 198, 157);">
+             <span class="slds-truncate slds-p-horizontal_small" title="Section Title">Information</span>
+              </h3>
+              <lightning-accordion active-section-name="Order Details">
+                <lightning-accordion-section name="A" label="Order Details">
+
+                    <div class="slds-wrap slds-grid">
+                        <div class="slds-col slds-size_6-of-12 slds-p-horizontal--small slds-m-bottom--medium"><p>
+                    <lightning-input-field field-name="Customer_Name__c"   value={customername}> </lightning-input-field>
+                   </p></div>
+                    <div class="slds-col slds-size_6-of-12 slds-p-horizontal--small slds-m-bottom--medium"><p>
+                        <lightning-input-field field-name="Div__c" value={div}> </lightning-input-field>
+                        </p></div>
+                </div>
+
+
+
+
+              <div class="slds-wrap slds-grid">
+                <div class="slds-col slds-size_6-of-12 slds-p-horizontal--small slds-m-bottom--medium"><p>
+            <lightning-input-field field-name="Name"  value={name}> </lightning-input-field>
+           </p></div>
+            <div class="slds-col slds-size_6-of-12 slds-p-horizontal--small slds-m-bottom--medium"><p>
+                <lightning-input-field field-name="Make__c" value={make}> </lightning-input-field>
+                </p></div>
+        </div>
+
+        
+        <div class="slds-wrap slds-grid">
+          <div class="slds-col slds-size_6-of-12 slds-p-horizontal--small slds-m-bottom--medium"><p>
+      <lightning-input-field field-name="Opportunity__c"  value={opp}> </lightning-input-field>
+     </p></div>
+      <div class="slds-col slds-size_6-of-12 slds-p-horizontal--small slds-m-bottom--medium"><p>
+          <lightning-input-field field-name="Man__c" value={man}> </lightning-input-field>
+          </p></div>
+  </div>
+
+  <div class="slds-wrap slds-grid">
+    <div class="slds-col slds-size_6-of-12 slds-p-horizontal--small slds-m-bottom--medium"><p>
+<lightning-input-field field-name="Account_Name__c"   value={accname}> </lightning-input-field>
+</p></div>
+<div class="slds-col slds-size_6-of-12 slds-p-horizontal--small slds-m-bottom--medium"><p>
+    <lightning-input-field field-name="	Product__c" value={product}> </lightning-input-field>
+    </p></div>
+</div>
+
+<div class="slds-wrap slds-grid">
+<div class="slds-col slds-size_6-of-12 slds-p-horizontal--small slds-m-bottom--medium"><p>
+<lightning-input-field field-name="Type__c"  value={type}> </lightning-input-field>
+</p></div>
+<div class="slds-col slds-size_6-of-12 slds-p-horizontal--small slds-m-bottom--medium"><p>
+<lightning-input-field field-name="New_Probability__c" value={probability}> </lightning-input-field>
+</p></div>
+</div>
+
+<div class="slds-wrap slds-grid">
+<div class="slds-col slds-size_6-of-12 slds-p-horizontal--small slds-m-bottom--medium"><p>
+<lightning-input-field field-name="ROI_Analysis_Completed__c"   value={ROI}> </lightning-input-field>
+</p></div>
+<div class="slds-col slds-size_6-of-12 slds-p-horizontal--small slds-m-bottom--medium"><p>
+<lightning-input-field field-name="Amount__c" value={amount}> </lightning-input-field>
+</p></div>
+</div>
+
+<div class="slds-wrap slds-grid">
+<div class="slds-col slds-size_6-of-12 slds-p-horizontal--small slds-m-bottom--medium"><p>
+<lightning-input-field field-name="Discovery_Completed__c"  value={discom}> </lightning-input-field>
+</p></div>
+<div class="slds-col slds-size_6-of-12 slds-p-horizontal--small slds-m-bottom--medium"><p>
+<lightning-input-field field-name="Delivery__c" value={delivery}> </lightning-input-field>
+</p></div>
+</div>
+
+<div class="slds-wrap slds-grid">
+<div class="slds-col slds-size_6-of-12 slds-p-horizontal--small slds-m-bottom--medium"><p>
+<lightning-input-field field-name="Close_Date__c"  value={closedate}> </lightning-input-field>
+</p></div>
+<div class="slds-col slds-size_6-of-12 slds-p-horizontal--small slds-m-bottom--medium"><p>
+<lightning-input-field field-name="Budget_Confirmed__c" value={budgetcon}> </lightning-input-field>
+</p></div>
+</div>
+
+</lightning-accordion-section>
+</lightning-accordion>
+
+<lightning-accordion active-section-name="PO Details">
+<lightning-accordion-section name="B" label="PO Details">
+
+  <div class="slds-wrap slds-grid">
+    <div class="slds-col slds-size_6-of-12 slds-p-horizontal--small slds-m-bottom--medium"><p>
+  <lightning-input-field field-name="Priority__c" value={priority}> </lightning-input-field>
+  </p></div>
+  <div class="slds-col slds-size_6-of-12 slds-p-horizontal--small slds-m-bottom--medium"><p>
+    <lightning-input-field field-name="PO_Number__c" value={ponum}> </lightning-input-field>
+    </p></div>
+  </div>  
+
+  <div class="slds-wrap slds-grid">
+    <div class="slds-col slds-size_6-of-12 slds-p-horizontal--small slds-m-bottom--medium"><p>
+  <lightning-input-field field-name="Total__c"  value={Total}> </lightning-input-field>
+  </p></div>
+  <div class="slds-col slds-size_6-of-12 slds-p-horizontal--small slds-m-bottom--medium"><p>
+    <lightning-input-field field-name="SO_Number__c" value={sonum}> </lightning-input-field>
+    </p></div>
+  </div>  
+
+  <div class="slds-wrap slds-grid">
+    <div class="slds-col slds-size_6-of-12 slds-p-horizontal--small slds-m-bottom--medium"><p>
+  <lightning-input-field field-name="SO_Date__c"  value={sodate}> </lightning-input-field>
+  </p></div>
+  <div class="slds-col slds-size_6-of-12 slds-p-horizontal--small slds-m-bottom--medium"><p>
+    <lightning-input-field field-name="Quotation_Number__c" value={quonum}> </lightning-input-field>
+    </p></div>
+  </div>  
+
+  <div class="slds-wrap slds-grid">
+    <div class="slds-col slds-size_6-of-12 slds-p-horizontal--small slds-m-bottom--medium"><p>
+  <lightning-input-field field-name="Purchase_Queries__c"  value={purchasequery}> </lightning-input-field>
+  </p></div>
+  <div class="slds-col slds-size_6-of-12 slds-p-horizontal--small slds-m-bottom--medium"><p>
+    <lightning-input-field field-name="Vendor_Number__c" value={vendornum}> </lightning-input-field>
+    </p></div>
+  </div>  
+
+  <div class="slds-wrap slds-grid">
+    <div class="slds-col slds-size_6-of-12 slds-p-horizontal--small slds-m-bottom--medium"><p>
+  <lightning-input-field field-name="Sailor_Remarks__c"  value={sailorrem}> </lightning-input-field>
+  </p></div>
+  <div class="slds-col slds-size_6-of-12 slds-p-horizontal--small slds-m-bottom--medium"><p>
+    <lightning-input-field field-name="Vendor_PO_No_Dt__c" value={vendorpono}> </lightning-input-field>
+    </p></div>
+  </div> 
+
+  <div class="slds-wrap slds-grid">
+    <div class="slds-col slds-size_6-of-12 slds-p-horizontal--small slds-m-bottom--medium"><p>
+  <lightning-input-field field-name="Customer_PO_No_Dt__c"  value={custpono}> </lightning-input-field>
+  </p></div>
+  </div> 
+
+</lightning-accordion-section>
+</lightning-accordion>
+
+
+<lightning-accordion active-section-name="Additional Information">
+<lightning-accordion-section name="C" label="Additional Information">
+
+<div class="slds-wrap slds-grid">
+    <div class="slds-col slds-size_6-of-12 slds-p-horizontal--small slds-m-bottom--medium"><p>
+  <lightning-input-field field-name="Gen__c"  value={gen}> </lightning-input-field>
+  </p></div>
+  </div>  
+
+  <div class="slds-wrap slds-grid">
+    <div class="slds-col slds-size_6-of-12 slds-p-horizontal--small slds-m-bottom--medium"><p>
+  <lightning-input-field field-name="LF__c"  value={LF}> </lightning-input-field>
+  </p></div>
+  <div class="slds-col slds-size_6-of-12 slds-p-horizontal--small slds-m-bottom--medium"><p>
+    <lightning-input-field field-name="Org_Ref__c" value={orgref}> </lightning-input-field>
+    </p></div>
+  </div>  
+
+  <div class="slds-wrap slds-grid">
+    <div class="slds-col slds-size_6-of-12 slds-p-horizontal--small slds-m-bottom--medium"><p>
+  <lightning-input-field field-name="Tech__c"  value={tech}> </lightning-input-field>
+  </p></div>
+  <div class="slds-col slds-size_6-of-12 slds-p-horizontal--small slds-m-bottom--medium"><p>
+    <lightning-input-field field-name="Plan_Unplan__c" value={planunplan}> </lightning-input-field>
+    </p></div>
+  </div>  
+
+  <div class="slds-wrap slds-grid">
+    <div class="slds-col slds-size_6-of-12 slds-p-horizontal--small slds-m-bottom--medium"><p>
+  <lightning-input-field field-name="Com__c"  value={com}> </lightning-input-field>
+  </p></div>
+  <div class="slds-col slds-size_6-of-12 slds-p-horizontal--small slds-m-bottom--medium"><p>
+    <lightning-input-field field-name="Repeat_New__c" value={repeatnew}> </lightning-input-field>
+    </p></div>
+  </div>  
+
+  <div class="slds-wrap slds-grid">
+    <div class="slds-col slds-size_6-of-12 slds-p-horizontal--small slds-m-bottom--medium"><p>
+  <lightning-input-field field-name="Next_Step__c"  value={nextstep}> </lightning-input-field>
+  </p></div>
+  <div class="slds-col slds-size_6-of-12 slds-p-horizontal--small slds-m-bottom--medium"><p>
+    <lightning-input-field field-name="S_No__c" value={sno}> </lightning-input-field>
+    </p></div>
+  </div>  
+
+  <div class="slds-wrap slds-grid">
+    <div class="slds-col slds-size_6-of-12 slds-p-horizontal--small slds-m-bottom--medium"><p>
+  <lightning-input-field field-name="Lead_Source__c"  value={leadsrc}> </lightning-input-field>
+  </p></div>
+  <div class="slds-col slds-size_6-of-12 slds-p-horizontal--small slds-m-bottom--medium"><p>
+    <lightning-input-field field-name="Cluster__c" value={cluster}> </lightning-input-field>
+    </p></div>
+  </div>  
+
+  <div class="slds-wrap slds-grid">
+    <div class="slds-col slds-size_6-of-12 slds-p-horizontal--small slds-m-bottom--medium"><p>
+  <lightning-input-field field-name="Description__c"  value={description}> </lightning-input-field>
+  </p></div>
+  <div class="slds-col slds-size_6-of-12 slds-p-horizontal--small slds-m-bottom--medium"><p>
+    <lightning-input-field field-name="Del_Sch__c" value={delsch}> </lightning-input-field>
+    </p></div>
+  </div>  
+
+  <div class="slds-wrap slds-grid">
+    <div class="slds-col slds-size_6-of-12 slds-p-horizontal--small slds-m-bottom--medium"><p>
+  <lightning-input-field field-name="Person1__c"  value={person1}> </lightning-input-field>
+  </p></div>
+  <div class="slds-col slds-size_6-of-12 slds-p-horizontal--small slds-m-bottom--medium"><p>
+    <lightning-input-field field-name="Person2__c" value={person2}> </lightning-input-field>
+    </p></div>
+  </div>  
+
+  <div class="slds-wrap slds-grid">
+    <div class="slds-col slds-size_6-of-12 slds-p-horizontal--small slds-m-bottom--medium"><p>
+  <lightning-input-field field-name="Person3__c"  value={person3}> </lightning-input-field>
+  </p></div>
+  <div class="slds-col slds-size_6-of-12 slds-p-horizontal--small slds-m-bottom--medium"><p>
+    <lightning-input-field field-name="Person4__c" value={person4}> </lightning-input-field>
+    </p></div>
+  </div>  
+
+  <div class="slds-wrap slds-grid">
+    <div class="slds-col slds-size_6-of-12 slds-p-horizontal--small slds-m-bottom--medium"><p>
+  <lightning-input-field field-name="Del_Size__c"  value={delsize}> </lightning-input-field>
+  </p></div>
+  </div>  
+</lightning-accordion-section>
+</lightning-accordion>  
+
+</div>
+
+    
+        </div>
+        <!-- modal footer start-->
+        <div class="slds-modal__footer">
+          <button class="slds-button slds-button_neutral" aria-label="Cancel and close" onclick={handleCancel}>Cancel</button>
+          <lightning-button label="Save &amp; New" variant="neutral" type="submit" onclick={handleSaveAndNew} > </lightning-button>
+          <lightning-button label="Save" variant="brand" type="submit" onclick={handleSave} ></lightning-button>
+         
+        </div>
+     
+      </div>
+  </section>
+  <div class="slds-backdrop slds-backdrop_open" role="presentation"></div>
+
+<!-- modal end -->
+</lightning-record-edit-form>
+</template>
+</template>

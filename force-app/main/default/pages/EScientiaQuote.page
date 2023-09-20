@@ -1,0 +1,351 @@
+<!--
+VfPage:BiomatiqQuote
+Controller:BiomatiqQuote
+Developer:Vignesh,Yuvashree,Gowtham
+!--->
+<apex:page renderAs="advanced_pdf" standardController="Quotes__c" showHeader="false" standardStylesheets="false"   applyHtmlTag="false"  extensions="BiomatiqQuote">
+    
+    <head>
+        <style TYPE="text/css" MEDIA="print">
+            <!--  @page {
+            size: portrait;    
+            border: 1px solid black;    
+            padding-left: 5px;    
+            padding-right: 5px;   
+            
+            }!-->
+            
+            @page {
+          
+            @top-center { 
+            
+             content: element(header);               
+          }
+            
+ div.header {
+    padding-top: 10px;
+    position: running(header);      
+}
+           
+ @bottom-center {
+ content: "Page " counter(page) " of " counter(pages);
+           
+ }
+ }
+           
+            .right {
+            float: right;
+            }
+            
+            .abc{
+            
+           border-style: none;
+            }
+            .cc{
+            border:1px solid black;
+          border-right-style: none;
+            border-collapse: collapse;
+         
+              
+            }
+            .ccc{
+            border:1px solid black;
+             border-left-style: none;
+            border-collapse: collapse;
+            }
+            .c{
+            border-right-style: none;
+            }
+            tr,td,th{
+            border:1px solid black;
+   
+            }
+            
+            
+            table{
+           
+            border-collapse: collapse;
+            }
+            .table1{
+            -fs-table-paginate: paginate;
+            border:1px solid white;
+            table-layout:fixed
+            }
+            
+            
+            .letterBold{
+            font-weight: bold;
+            text-decoration-thickness: 5px;
+            }
+            .line {
+  width: 53px;
+  height: 0;
+  border: 1px solid #C4C4C4;
+  margin: 3px;
+  display:inline-block;
+}
+        </style>
+        
+    </head>
+    <body>
+       <div class="header">
+        <table style="width:100%;" >
+            <tr >
+                <td  class="cc">
+                    <img src="https://biomatiq--biouat--c.visualforce.com/resource/1656580125000/BiomatiQ_logo?" align="left" style="width:170px; height:130px;"/><br/></td>
+                <td  class="ccc c"> <span style="text-align:left;font-size:19px;border-style: none;"><b>Biomatiq Quality Solutions</b></span><br/>
+                    
+                    <span style="font-size:14px;text-align-last:text-align:left;justify;line-height:20px;border-style: none;">                                 
+                        1386,Apuroopa Township,Opp More Super Market<br/>
+                        Pragathinagar,Quthabullapur Hyderabad 500090 India<br/>	                                    
+                        GSTIN 36AARFB8391E3ZZ<br/>
+                        sales@biomatiq.com<br/>
+                    </span> 
+                </td>    
+                
+                <td  style="font-family: Arial Unicode MS;text-decoration-thickness: 5px;" class="ccc"><br/><br/><br/>
+                    
+                    <span style="text-align:center;text-decoration-thickness: 0px;font-size:30px;margin-left:20px;padding-r:10px;"><b>ESTIMATE</b></span>
+                </td> 
+            </tr>
+        </table>
+              </div>  
+   
+        
+        
+            <table style="width:100%;" cellspacing="0" cellpadding="0px" >
+                <tr height="100%" style="margin: 12px;text-align:left; ">
+                    <td width="50%" colspan="3" style="padding-left: 7px;padding-bottom:4px;padding-top:3px;">
+                        <span>&nbsp;Estimate#  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:
+                          <b> <apex:outputText value="{!quoteNo}" /></b> </span><br/>  
+                        <span> &nbsp;Estimate Date  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:
+                             <b><apex:outputText value="{0,date,dd-MM-yyyy}">
+                                <!--apex:param value="{!Quotes__c.Estimate_Date__c}">
+                                </apex:param--></apex:outputText></b></span><br/> 
+                        <span>&nbsp;Expiry Date  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:
+                            <b> <apex:outputText value="{0,date,dd-MM-yyyy}">
+                                <apex:param value="{!Quotes__c.Expiry_Date__c}">
+                                </apex:param></apex:outputText></b></span><br/>
+                        
+                    </td>
+                    <td width="50%" colspan="3" style="padding-right: 7px;padding-bottom:4px;padding-top:3px;">
+                       <span> &nbsp;Place Of Supply &nbsp;&nbsp;&nbsp;&nbsp;:<b> </b></span><br/>
+                         <span> &nbsp;Make &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:<b><apex:outputText value="{!Quotes__c.Order__r.Make__c}" /></b></span><br/>
+                        <span> &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;</span><br/>
+                         {!prod.Name}
+                         <br/><br/>
+                        {!Quotes__c.Opportunity__r.Mobile__c}
+                        <br/><br/>
+                        {!Quotes__c.Opportunity__r.Email__c}
+                        
+                    </td>
+                </tr></table>
+       
+            <!--
+            <table style="width:100%;" cellspacing="0" cellpadding="0px" >
+                <tr height="100%" style="margin: 12px;text-align:left;background-color:#F0F0F0; " class="letterBold table1">
+                    <th width="50%"  style="padding-left: 7px;padding-bottom:4px;padding-top:3px;">Bill To</th>
+                    <th width="50%"  style="padding-left: 7px;padding-bottom:4px;padding-top:3px;">Ship To</th>
+                </tr>
+            
+                <tr>
+                    <!--td width="50%">{!cont.MailingStreet}
+                        <br/>{!cont.MailingCity}<br/>
+                         {!cont.MailingState}<br/>
+                          {!cont.MailingPostalCode}<br/>
+                      {!cont.MailingCountry}<br/>
+                      
+                    </td>
+                    <td width="50%">
+                          {!cont.MailingStreet}
+                        <br/>{!cont.MailingCity}<br/>
+                         {!cont.MailingState}<br/>
+                          {!cont.MailingPostalCode}<br/>
+                      {!cont.MailingCountry}<br/>      
+                    </td>
+                </tr>
+            
+            </table>
+        
+        <table>
+            
+          <tbody>
+               <apex:pageBlock rendered="{!gstLocation== 'Intra State'}">
+            <table style="width:100%;-fs-table-paginate: paginate;" cellspacing="0" cellpadding="0px" classs="table1" >
+           
+               
+              <tr height="100%" style="margin: 12px;text-align:left;background-color:#F0F0F0; " class="letterBold table1">
+              <th style="padding:2.5px; width: 5%;" rowspan="2">S.No</th>
+              <th style="padding:2.5px;width: 25%;" rowspan="2">Item and Description</th>
+              <th style="padding:2.5px; width: 5%;" rowspan="2">Quantity</th>
+              <th style="padding:2.5px;width: 10%;" rowspan="2">Rate</th>
+              <th style="padding:2.5px;width: 25%;" colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CGST</th>
+              <th style="padding:2.5px;width: 25%;" colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SGST</th>
+              <th style="padding:2.5px;width: 10%;" rowspan="2">Discount</th>
+        <th style="padding:2.5px;width: 15%;font-size:15px;" rowspan="2">Amount</th>
+                </tr>
+                <tr style="margin: 12px;text-align:left;background-color:#F0F0F0; "><th>%</th>
+        <th>Amt</th>
+        <th>%</th>
+        <th>Amt</th></tr> 
+
+               
+               <!-- <tr class="letterBold"><td></td><td></td><td></td>
+                    <td></td><td width="10%">%</td><td width="10%">Amt</td><td width="10%">%</td><td width="10%">Amt</td><td></td>
+                </tr>
+                
+                <tr height="100%" style="margin: 12px;text-align:left; " class="table1">
+                    <td></td>
+                 <td>{!Quotes__c.Product_List__r.S_No__c}</td>
+                    <td>{!Quotes__c.Product_List__r.Name}</td>
+                    <td>{!Quotes__c.Product_List__r.Quantity__c}</td>
+                    <td>{!Quotes__c.Product_List__r.Unit_Price__c}</td>
+                    <td>{!Quotes__c.Product_List__r.Cgst__c}</td>
+                    <td>{!Quotes__c.Product_List__r.Amt__c}</td>
+                    <td>{!Quotes__c.Product_List__r.SGST__c}</td>
+                    <td>{!Quotes__c.Product_List__r.Amt__c}</td>
+                    <td>{!Quotes__c.Product_List__r.Total_Price__c}</td>
+                </tr>  >
+              
+                <apex:variable value="{!1}" var="count" />
+        <apex:repeat value="{!products}" var="col" >
+            <tr style="page-break-inside:avoid" > 
+                <td><apex:outputText value="{!count}"/><apex:variable value="{!count+1}" var="count"/></td>
+                <td>{!col.Product__r.Name}</td>
+                <td>{!col.Quantity__c}</td> 
+                <td>{!col.Unit_Price__c}0</td> 
+                 <td>{!col.Cgst__c}%</td> 
+                 <td>{!col.Amt__c}</td>
+                <td>{!col.SGST__c}%</td> 
+                <td >{!col.Amt__c}</td>
+                <td >{!col.Discount__c}%</td>
+                <td>{!col.Total_Price__c}</td>
+            </tr>
+        </apex:repeat>
+                
+                <table style="width:100%;" cellspacing="0" cellpadding="0px" classs="abc">
+                <tr height="100%" style="margin-top:12px;text-align:left; ">
+                    
+                    <th width="50%" colspan="7" rowspan="6" style="padding-left: 7px;padding-bottom:4px;padding-top:3px;font-weight: normal;">
+                        Items in Total :&nbsp;&nbsp;{!opps.Total_Items__c}.00<br/><br/>
+                        Total in Words :<br/><b>{!opps.Amount_In_Words__c}</b><br/><br/>
+                        Looking forward for your valuable purchase order<br/><br/><br/>
+                       <b> Terms and Conditions</b><br/>
+                        Insurance: If applicable, client need to arrange<br/>
+                        Tax: As applicable GST<br/>
+                        Delivery: Delivered within 4 weeks from the date of confirmed PO<br/>
+                        Freight: Applicable, if the PO quantity is lesser than the minimum order<br/>
+                        quantity 
+                        <br/><br/>
+                        {!Quotes__c.Terms_Conditions__c}
+                        <br/><br/>
+                        <div style=" min-height: 50px;">
+                          
+            </div>
+                    </th> 
+               
+                    <td classs="cc" style="text-align:center;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Subtotal &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td style="text-align:right;" class="ccc">{!Quotes__c.Opportunity__r.Subtotal__c}0</td></tr>
+                <tr classs="cc"><td classs="abc" style="text-align:center;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CGST({!Quotes__c.GST_Total__c}%) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td class="ccc" style="text-align:right;">{!Quotes__c.Opportunity__r.Total_Gst_Amount__c}0</td>
+               
+                </tr>
+                <tr classs="cc"><td classs="abc" style="text-align:center;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SGST({!Quotes__c.GST_Total__c}%)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td class="ccc" style="text-align:right;">{!Quotes__c.Opportunity__r.Total_Gst_Amount__c}0</td>
+                </tr>
+                <tr classs="cc"><td classs="abc" style="text-align:center;"><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Total </b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td class="" style="text-align:right;">{!Quotes__c.Opportunity__r.Grand_Total__c}0</td>
+                </tr> 
+                    <tr>
+                         <td class="cc" style="text-align:right;"> <span style="text-align:right;border:11px;font-size:12px;padding-bottom:4px;">     <div style=" min-height: 200px;">
+                          
+            </div>Authorized Signature </span> </td>
+                    <td class="ccc" style="text-align:left;"> <span style="text-align:right;border:11px;font-size:12px;padding-bottom:4px;">     <div style=" min-height: 200px;">
+                          
+            </div>&nbsp; </span>   </td>
+                        
+                </tr>
+     <tr>
+         <td class="cc"></td>
+         <td class="ccc"></td>
+                </tr>
+            </table>
+                   </table></apex:pageBlock>
+            <apex:pageBlock rendered="{!gstLocation == 'Inter State'}">
+               <table style="width:100%;-fs-table-paginate: paginate;" cellspacing="0" cellpadding="0px" classs="table1" >
+           
+               
+              <tr height="100%" style="margin: 12px;text-align:left;background-color:#F0F0F0; " class="letterBold table1">
+              <th style="padding:2.5px; width: 5%;" rowspan="2">S.No</th>
+              <th style="padding:2.5px;width: 25%;" rowspan="2">Item and Description</th>
+              <th style="padding:2.5px; width: 5%;" rowspan="2">Quantity</th>
+              <th style="padding:2.5px;width: 10%;" rowspan="2">Rate</th>
+              <th style="padding:2.5px;width: 25%;" colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IGST</th>
+              <th style="padding:2.5px;width: 10%;" rowspan="2">Discount</th>
+        <th style="padding:2.5px;width: 15%;font-size:15px;" rowspan="2">Amount</th>
+                </tr>
+                <tr style="margin: 12px;text-align:left;background-color:#F0F0F0; "><th>%</th>
+        <th>Amt</th>
+       </tr> 
+
+                <apex:variable value="{!1}" var="count" />
+        <apex:repeat value="{!products}" var="col" >
+            <tr style="page-break-inside:avoid" > 
+                <td><apex:outputText value="{!count}"/><apex:variable value="{!count+1}" var="count"/></td>
+                <td>{!col.Product__r.Name}</td>
+                <td>{!col.Quantity__c}</td> 
+                <td>{!col.Unit_Price__c}0</td> 
+                 <td>{!col.IGST__c}%</td> 
+                   <td >{!col.Amt__c}</td>
+                <td >{!col.Discount__c}%</td>
+                <td>{!col.Total_Price__c}</td>
+            </tr>
+        </apex:repeat>
+                   </table>
+                
+                <table style="width:100%;-fs-table-paginate: paginate;" cellspacing="0" cellpadding="0px" classs="abc">
+                <tr height="100%" style="margin-top:12px;text-align:left; ">
+                    
+                    <th width="50%" colspan="7" rowspan="6" style="padding-left: 7px;padding-bottom:4px;padding-top:3px;font-weight: normal;">
+                        Items in Total :&nbsp;&nbsp;{!opps.Total_Items__c}.00<br/><br/>
+                        Total in Words :<br/><b>{!opps.Amount_In_Words__c}</b><br/><br/>
+                        Looking forward for your valuable purchase order<br/><br/><br/>
+                       <b> Terms and Conditions</b><br/>
+                        Insurance: If applicable, client need to arrange<br/>
+                        Tax: As applicable GST<br/>
+                        Delivery: Delivered within 4 weeks from the date of confirmed PO<br/>
+                        Freight: Applicable, if the PO quantity is lesser than the minimum order<br/>
+                        quantity 
+                        <br/><br/>
+                        {!Quotes__c.Terms_Conditions__c}
+                        <br/><br/>
+                        <div style=" min-height: 50px;">
+                          
+            </div>
+                    </th> 
+               
+                    <td classs="cc" style="text-align:center;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Subtotal &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td style="text-align:right;" class="ccc">{!Quotes__c.Opportunity__r.Subtotal__c}0</td></tr>
+                <tr classs="cc"><td classs="abc" style="text-align:center;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IGST({!Quotes__c.GST_Total__c}%) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td class="ccc" style="text-align:right;">{!Quotes__c.Opportunity__r.Total_Gst_Amount__c}0</td>
+               
+                </tr>
+              
+                    <tr>
+                         <td class="cc" style="text-align:right;"> <span style="text-align:right;border:11px;font-size:12px;padding-bottom:4px;">     <div style=" min-height: 200px;">
+                          
+            </div>Authorized Signature </span> </td>
+                    <td class="ccc" style="text-align:left;"> <span style="text-align:right;border:11px;font-size:12px;padding-bottom:4px;">     <div style=" min-height: 200px;">
+                          
+            </div>&nbsp; </span>   </td>
+                        
+                </tr>
+     <tr>
+         <td class="cc"></td>
+         <td class="ccc"></td>
+                </tr>
+            </table>
+              </apex:pageBlock>
+              
+            
+         </tbody>
+           
+          </table>  -->  
+       
+        
+    </body>
+</apex:page>

@@ -1,0 +1,17 @@
+<template>
+    <lightning-button label="New Opportunity" onclick={handlechange}>
+
+    </lightning-button>
+    <template if:true={showme}>
+    <lightning-card>
+    <lightning-record-form
+    object-api-name={objectApiName}
+    record-id={recordId}
+    layout-type="Full"
+    mode="Edit"
+>
+</lightning-record-form>
+
+</lightning-card>
+</template>
+</template>

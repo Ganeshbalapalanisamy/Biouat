@@ -1,0 +1,15 @@
+<template>
+    <template if:false={openmodal}>
+    <lightning-record-edit-form object-api-name={childObjectApiName} >
+        <label for="fieldid">{fieldLabel}</label>
+        <lightning-input-field id="fieldid" 
+            value={value} onchange={handleChange} >
+        </lightning-input-field>
+        <lightning-button label="Cancel" onclick={handleclose}></lightning-button>
+        <lightning-button label="Next"  onclick={handlenext}></lightning-button>
+    </lightning-record-edit-form>
+    <template if:true={showexistingopportunity}>
+        <c-postsalesupdate openexistingmodel={openexistingmodel} selectedvalue={selectedRecordId}></c-postsalesupdate>
+    </template>
+</template>
+</template>

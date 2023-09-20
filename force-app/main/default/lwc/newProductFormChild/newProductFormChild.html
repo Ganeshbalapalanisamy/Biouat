@@ -1,0 +1,151 @@
+<template>
+<template if:true={productType}>
+    <div class="slds-form-element" onmouseleave={toggleResult}  data-source="lookupContainer">      
+        <div class="slds-combobox_container slds-has-selection">
+         
+          <div class="lookupInputContainer slds-combobox slds-dropdown-trigger slds-dropdown-trigger_click" aria-expanded="false" aria-haspopup="listbox" role="combobox"> 
+           <div class="slds-combobox__form-element slds-input-has-icon slds-input-has-icon_left-right" role="none">
+              <div class="searchBoxWrapper slds-show">
+                <!--Lookup Input Field-->
+                <div>
+                  <table><tr><td style="width:30%;padding-left:5px;"><b style="color:red;">*</b>HSN Code</td><td style="width:59%;padding-right:3px;"> 
+                <lightning-input                   
+                   type="number"
+                   pattern="[0-9]*"
+                   data-source="searchInputField"
+                   onclick={toggleResult}
+                   onchange={handleKeyChange}
+                   is-loading={isSearchLoading}
+                   value={searchKey}
+                   variant="label-hidden"
+                   placeholder={placeholder}
+                   max-length="8"
+                   required
+               ></lightning-input>  </td></tr></table>
+              </div>
+           
+            </div>
+            <!--Lookup Selected record pill container start-->  
+            <div class="pillDiv slds-hide">  <div>  
+              <table><tr><td style="width:30%;padding-left:5px;"><b style="color:red;">*</b>HSN Code</td><td style="width:59%;padding-right:3px;">
+              
+              <input type="text"
+                     id="combobox-id-1"
+                     value={selectedRecord.HSN_Code__c}       
+                     class="slds-input slds-combobox__input slds-combobox__input-value"
+                     readonly
+                     required
+                     />
+              <button class="slds-button slds-button_icon slds-input__icon slds-input__icon_right" title="Remove selected option">
+              <lightning-icon icon-name="utility:close" size="x-small" alternative-text="close icon" onclick={handleRemove}></lightning-icon> 
+             </button></td></tr></table></div>
+            </div>  
+            </div>
+        
+            <!-- lookup search result part start-->
+            <div style="margin-top:0px" id="listbox-id-5" class="slds-dropdown slds-dropdown_length-with-icon-7 slds-dropdown_fluid" role="listbox">
+              <ul class="slds-listbox slds-listbox_vertical" role="presentation">
+              
+                <template for:each={lstResult} for:item="obj">
+                <li key={obj.Id} role="presentation" class="slds-listbox__item">
+                  <div data-recid={obj.Id} onclick={handelSelectedRecord} class="slds-media slds-listbox__option slds-listbox__option_entity slds-listbox__option_has-meta" role="option">
+                    <span style="pointer-events: none;" class="slds-media__figure slds-listbox__option-icon" >
+                      <span class="slds-icon_container" >
+                          <lightning-icon icon-name={iconName} size="small" alternative-text="icon" ></lightning-icon>  
+                      </span>
+                    </span>
+                    <span style="pointer-events: none;" class="slds-media__body" >
+                      <span  class="slds-listbox__option-text slds-listbox__option-text_entity">{obj.HSN_Code__c}</span>
+                    </span>
+                  </div>
+                </li>
+           
+                </template>
+                <!--ERROR msg, if there is no records..-->
+                <template if:false={hasRecords}>
+                  <li class="slds-listbox__item" style="text-align: center; font-weight: bold;">No Records Found....</li>
+                </template>
+              </ul>
+             
+            </div>
+          </div>
+        </div>
+      </div>
+    </template>
+
+
+<template if:true={serviceType}>
+      <div class="slds-form-element" onmouseleave={toggleResultSAC}  data-source="lookupContainer">      
+        <div class="slds-combobox_container slds-has-selection">
+         
+          <div class="lookupInputContainer slds-combobox slds-dropdown-trigger slds-dropdown-trigger_click" aria-expanded="false" aria-haspopup="listbox" role="combobox"> 
+           <div class="slds-combobox__form-element slds-input-has-icon slds-input-has-icon_left-right" role="none">
+              <div class="searchBoxWrapper slds-show">
+                <!--Lookup Input Field-->
+                <div>
+                  <table><tr><td style="width:30%;padding-left:5px;">SAC Code</td><td style="width:59%;padding-right:3px;"> 
+                <lightning-input                   
+                type="number"
+                pattern="[0-9]*"
+                   data-source="searchInputField"
+                   onclick={toggleResultSAC}
+                   onchange={handleKeyChangeSAC}
+                   is-loading={isSearchLoadingSAC}
+                   value={searchKeySAC}
+                   variant="label-hidden"
+                   placeholder="Search SAC Code"
+                   max-length="8"
+                required
+               ></lightning-input>  </td></tr></table>
+              </div>
+           
+            </div>
+            <!--Lookup Selected record pill container start-->  
+            <div class="pillDiv slds-hide">  <div>  
+      
+              <table><tr><td style="width:30%;padding-left:5px;">SAC Code</td><td style="width:59%;padding-right:3px;">
+              <input type="text"
+                     id="combobox-id-11"
+                     value={selectedRecordSAC.SAC_Code__c}       
+                     class="slds-input slds-combobox__input slds-combobox__input-value"
+                     readonly
+                     required
+                     />
+              <button class="slds-button slds-button_icon slds-input__icon slds-input__icon_right" title="Remove selected option">
+              <lightning-icon icon-name="utility:close" size="x-small" alternative-text="close icon" onclick={handleRemoveSAC}></lightning-icon> 
+             </button></td></tr></table></div>
+            </div>  
+            </div>
+        
+            <!-- lookup search result part start-->
+            <div style="margin-top:0px" id="listbox-id-51" class="slds-dropdown slds-dropdown_length-with-icon-7 slds-dropdown_fluid" role="listbox">
+              <ul class="slds-listbox slds-listbox_vertical" role="presentation">
+               
+                <template for:each={lstResultSAC} for:item="objj">
+                <li key={objj.Id} role="presentation" class="slds-listbox__item">
+                  <div data-recid={objj.Id} onclick={handelSelectedRecordSAC} class="slds-media slds-listbox__option slds-listbox__option_entity slds-listbox__option_has-meta" role="option">
+                    <span style="pointer-events: none;" class="slds-media__figure slds-listbox__option-icon" >
+                      <span class="slds-icon_container" >
+                          <lightning-icon icon-name={iconName} size="small" alternative-text="icon" ></lightning-icon>  
+                      </span>
+                    </span>
+                    <span style="pointer-events: none;" class="slds-media__body" >
+                      <span  class="slds-listbox__option-text slds-listbox__option-text_entity">{objj.SAC_Code__c}</span>
+                    </span>
+                  </div>
+                </li>
+  
+                </template>
+                <!--ERROR msg, if there is no records..-->
+                <template if:false={hasRecordsSAC}>
+                  <li class="slds-listbox__item" style="text-align: center; font-weight: bold;">No Records Found....</li>
+                </template>
+              </ul>
+             
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </template>
+  </template>

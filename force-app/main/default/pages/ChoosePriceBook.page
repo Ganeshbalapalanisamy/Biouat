@@ -1,0 +1,23 @@
+<apex:page showHeader="false" sidebar="false" standardController="Product_List__c" recordSetVar="pl">
+    <apex:includeLightning />    
+    <div id="LightningComponentid" />
+       <head>
+           <style >
+               @page {
+            
+          }
+           </style></head>
+
+    <script>
+    $Lightning.use("c:choosePriceBookApp",function(){                                                                                                                                           
+            $Lightning.createComponent("c:choosePriceBook",
+            { 
+                recordId : '{!$CurrentPage.parameters.id}'
+            },
+            "LightningComponentid", // the Id of div tag where your component will be rendered
+            function(cmp) {
+                console.log('Calling the LWC Component'); //console.log('Calling the LWC Component' + {!$CurrentPage.parameters.id});
+            });
+        });
+    </script>
+</apex:page>
