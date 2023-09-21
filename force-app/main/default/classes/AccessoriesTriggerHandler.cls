@@ -4,9 +4,9 @@ public class AccessoriesTriggerHandler {
     public static void beforeInsert(List<Product_List_Items__c> accessList){
         productTypeError(accessList);
     }
-   /* public static void beforeUpdate(){
+   public static void beforeUpdate(){
        
-    }
+    }/* 
     public static void beforeDelete(){
         
     }
