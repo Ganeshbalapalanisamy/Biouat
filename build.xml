@@ -5,7 +5,8 @@
   <property environment="env"/>
   
   <!-- Deploy the unpackaged set of metadata retrieved with retrieveUnpackaged and run tests in this organizations namespace only -->
-  
+  <taskdef resource="com/salesforce/antlib.xml" classpath="${basedir}/lib/ant-salesforce.jar"/>
+
   <target name="deployall">
   
   <sf:deploy username="${sf.username}" password="${sf.password}" serverurl="${sf.serverurl}" testlevel="NoTestRun" logtype="Detail" deployRoot="force-app"/>
